@@ -13,20 +13,6 @@ from .auth import BearerTokenAuth
 
 @dataclass(frozen=True)
 class ChatbotConfig:
-    """Connection settings for :class:`chatbot_client.ChatbotClient`.
-
-    Attributes:
-        base_url: Root URL of the API, e.g. ``https://chatbot-dev.example.com``.
-            A path prefix is allowed when the API sits behind a gateway.
-        auth: Any ``httpx.Auth``, e.g. :class:`chatbot_client.BearerTokenAuth`. ``None`` sends no credentials.
-        timeout: Seconds to wait for a response. Completions wait for a language model,
-            so the default is generous.
-        connect_timeout: Seconds to wait while opening a connection.
-        max_retries: Retries for requests the server cannot have processed; see the README.
-        backoff_factor: Base delay in seconds for exponential backoff between retries.
-        headers: Extra headers sent with every request, e.g. a correlation id.
-    """
-
     base_url: str
     auth: httpx.Auth | None = None
     timeout: float = 60.0

@@ -1,22 +1,3 @@
-"""Exceptions raised by chatbot_client.
-
-Every error this library raises on purpose derives from :class:`ChatbotError`, so an
-application can catch one type at its integration boundary. Invalid arguments
-(an empty bot id, chat id or message) raise ``ValueError`` before any request is sent.
-
-    ChatbotError
-    ├── ChatbotConnectionError      no complete response received
-    │   └── ChatbotTimeoutError
-    ├── ChatbotAPIError             non-2xx response
-    │   ├── BadRequestError         400
-    │   ├── AuthenticationError     401
-    │   ├── PermissionDeniedError   403
-    │   ├── NotFoundError           404
-    │   ├── RateLimitError          429
-    │   └── ServerError             5xx
-    └── InvalidResponseError        2xx response with an unexpected body
-"""
-
 from __future__ import annotations
 
 import httpx

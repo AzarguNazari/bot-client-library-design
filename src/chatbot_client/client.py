@@ -26,17 +26,6 @@ _MAX_RETRY_DELAY = 10.0
 
 
 class ChatbotClient:
-    """Starts chats and exchanges messages with the AiChatBot API.
-
-    Create one client and reuse it; it holds a connection pool. Use it as a context
-    manager, or call :meth:`close` when you are done.
-
-    Args:
-        config: Connection settings.
-        transport: Optional ``httpx`` transport for custom networking, e.g.
-            ``httpx.HTTPTransport(proxy=..., verify=...)``.
-    """
-
     def __init__(self, config: ChatbotConfig, *, transport: httpx.BaseTransport | None = None) -> None:
         self._config = config
         self._http = httpx.Client(
@@ -48,27 +37,14 @@ class ChatbotClient:
         )
 
     def create_chat(self, bot_id: str) -> ChatSession:
-        """Start a new chat with a bot (``CreateChat``).
-
-        Raises:
-            ValueError: ``bot_id`` is empty.
-            ChatbotError: The request failed; see :mod:`chatbot_client.errors`.
-        """
         _require_text(bot_id, "bot_id")
         response = self._post(_protocol.CREATE_CHAT_PATH, _protocol.create_chat_body(bot_id))
         return ChatSession(self, _protocol.parse_chat_id(response))
 
     def resume_chat(self, chat_id: str) -> ChatSession:
-        """Continue a chat whose id was saved earlier, e.g. between web requests. Sends no request."""
         return ChatSession(self, _require_text(chat_id, "chat_id"))
 
     def send_message(self, chat_id: str, message: str) -> str:
-        """Send a user message to a chat and return the assistant's reply (``ChatCompletion``).
-
-        Raises:
-            ValueError: ``chat_id`` or ``message`` is empty.
-            ChatbotError: The request failed; see :mod:`chatbot_client.errors`.
-        """
         _require_text(chat_id, "chat_id")
         _require_text(message, "message")
         response = self._post(_protocol.completion_path(chat_id), _protocol.completion_body(message))
