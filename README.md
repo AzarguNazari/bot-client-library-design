@@ -29,8 +29,7 @@ or
     try:
         with ChatbotClient(config) as client:
             chat = client.create_chat(bot_id)
-            for question in ("What can you help me with?", "Summarize that in one sentence."):
-                print(f"> {question}\n{chat.send(question)}")
+            print(chat.send("What can you help me with?"))
     except ChatbotError as error:
         print(f"Chatbot request failed: {error}", file=sys.stderr)
         return 1
