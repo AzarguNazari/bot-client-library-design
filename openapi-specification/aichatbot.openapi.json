@@ -1,0 +1,5074 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "AiChatBot.Api",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://chatbot-dev.example.com",
+            "description": "Development server"
+        },
+        {
+            "url": "https://chatbot-qa.example.com",
+            "description": "Staging server"
+        },
+        {
+            "url": "https://chatbot-prod.example.com",
+            "description": "Production server"
+        }
+    ],
+    "paths": {
+        "/api/admin/openAiServices": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "operationId": "AdminGetOpenAiServices",
+                "parameters": [
+                    {
+                        "name": "SearchFor",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OrderBy",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetOpenAiServicesResponseItemDtoPagingResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetOpenAiServicesResponseItemDtoPagingResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetOpenAiServicesResponseItemDtoPagingResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "operationId": "AdminCreateOpenAiService",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminCreateOpenAiServiceRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminCreateOpenAiServiceRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminCreateOpenAiServiceRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/openAiServices/{openAiServiceId}": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "operationId": "AdminGetOpenAiService",
+                "parameters": [
+                    {
+                        "name": "openAiServiceId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetOpenAiServiceResponseDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetOpenAiServiceResponseDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetOpenAiServiceResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin"
+                ],
+                "operationId": "AdminUpdateOpenAiService",
+                "parameters": [
+                    {
+                        "name": "openAiServiceId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateOpenAiServiceRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateOpenAiServiceRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateOpenAiServiceRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/admin/openAiService/{openAiServiceId}": {
+            "delete": {
+                "tags": [
+                    "Admin"
+                ],
+                "operationId": "AdminDeleteOpenAiService",
+                "parameters": [
+                    {
+                        "name": "openAiServiceId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/admin/bots": {
+            "get": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminGetBots",
+                "parameters": [
+                    {
+                        "name": "SearchFor",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OrderBy",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotsResponseItemDtoPagingResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminCreateBot",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminCreateBotRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminCreateBotRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminCreateBotRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminCreateBotResponseDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminCreateBotResponseDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminCreateBotResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/bots/{botId}": {
+            "get": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminGetBot",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotResponseDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotResponseDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminUpdateBot",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateBotRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateBotRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateBotRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminDeleteBot",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/admin/bots/{botId}/facts": {
+            "get": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminGetBotFacts",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "SearchFor",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OrderBy",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotFactsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotFactsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotFactsResponseItemDtoPagingResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminCreateBotFact",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminCreateBotFactRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminCreateBotFactRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminCreateBotFactRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminCreateBotFactResponseDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminCreateBotFactResponseDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminCreateBotFactResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/bots/{botId}/facts/{botFactId}": {
+            "put": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminUpdateBotFact",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "botFactId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateBotFactRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateBotFactRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateBotFactRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminDeleteBotFact",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "botFactId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/admin/bots/startbots": {
+            "get": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminGetStartBots",
+                "parameters": [
+                    {
+                        "name": "SearchFor",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OrderBy",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotsResponseItemDtoPagingResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/bots/{startBotId}/bots": {
+            "get": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminGetStartBotBots",
+                "parameters": [
+                    {
+                        "name": "startBotId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "SearchFor",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OrderBy",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetStartBotBotsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetStartBotBotsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetStartBotBotsResponseItemDtoPagingResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/bots/{startBotId}/unassignedbots": {
+            "get": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminGetStartBotUnassignedBots",
+                "parameters": [
+                    {
+                        "name": "startBotId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "SearchFor",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OrderBy",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetUnassignedBotsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetUnassignedBotsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetUnassignedBotsResponseItemDtoPagingResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/bots/{startBotId}/bots/{botId}": {
+            "post": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminCreateStartBotBot",
+                "parameters": [
+                    {
+                        "name": "startBotId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminCreateStartBotBotRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminCreateStartBotBotRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminCreateStartBotBotRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminUpdateStartBotBot",
+                "parameters": [
+                    {
+                        "name": "startBotId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateStartBotBotRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateStartBotBotRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateStartBotBotRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminDeleteStartBotBot",
+                "parameters": [
+                    {
+                        "name": "startBotId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/admin/bots/{botId}/feedback": {
+            "get": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminGetBotFeedback",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "FilterByVote",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "ShowFeedbacksWithoutStatus",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "ShowFeedbacksWithStatus",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "FilterByStatus",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "SearchFor",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OrderBy",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotFeedbackResponseItemDtoPagingResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotFeedbackResponseItemDtoPagingResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotFeedbackResponseItemDtoPagingResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/bots/{botId}/feedback/{feedbackId}": {
+            "put": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminUpdateBotFeedback",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "feedbackId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateBotFeedbackRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateBotFeedbackRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateBotFeedbackRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/admin/bots/stop/{isStopAllBots}": {
+            "put": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminStopAllBots",
+                "parameters": [
+                    {
+                        "name": "isStopAllBots",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/admin/bots/{botId}/acsBotConfiguration": {
+            "put": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminUpdateAcsBotConfiguration",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateAcsBotConfigurationRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateAcsBotConfigurationRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateAcsBotConfigurationRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminGetAcsBotConfiguration",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetAcsBotConfigurationResponseDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetAcsBotConfigurationResponseDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetAcsBotConfigurationResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/bots/{botId}/azureOpenAISearchBotConfiguration": {
+            "put": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminUpdateAzureOpenAISearchBotConfiguration",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateAzureOpenAISearchBotConfigurationRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateAzureOpenAISearchBotConfigurationRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateAzureOpenAISearchBotConfigurationRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminGetAzureOpenAISearchBotConfiguration",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetAzureOpenAISearchBotConfigurationResponseDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetAzureOpenAISearchBotConfigurationResponseDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetAzureOpenAISearchBotConfigurationResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/bots/implementationTypes": {
+            "get": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminGetBotImplementationTypes",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/bots/{botId}/configuration": {
+            "put": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminUpdateBotConfiguration",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateBotConfigurationRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateBotConfigurationRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminUpdateBotConfigurationRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "AdminBot"
+                ],
+                "operationId": "AdminGetBotConfiguration",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotConfigurationResponseDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotConfigurationResponseDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminGetBotConfigurationResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/bots/{botId}/search": {
+            "post": {
+                "tags": [
+                    "Bot"
+                ],
+                "operationId": "SearchBotByStartBot",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SearchBotByStartBotRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SearchBotByStartBotRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SearchBotByStartBotRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/bots": {
+            "get": {
+                "tags": [
+                    "Bot"
+                ],
+                "operationId": "GetBots",
+                "parameters": [
+                    {
+                        "name": "SearchFor",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OrderBy",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetBotsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetBotsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetBotsResponseItemDtoPagingResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/bots/bystartbot/{startBotId}": {
+            "get": {
+                "tags": [
+                    "Bot"
+                ],
+                "operationId": "GetBotsByStartBot",
+                "parameters": [
+                    {
+                        "name": "startBotId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "SearchFor",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OrderBy",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetBotsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetBotsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetBotsResponseItemDtoPagingResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/bots/startbots": {
+            "get": {
+                "tags": [
+                    "Bot"
+                ],
+                "operationId": "GetStartBots",
+                "parameters": [
+                    {
+                        "name": "SearchFor",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OrderBy",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetBotsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetBotsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetBotsResponseItemDtoPagingResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/bots/botimage/{botId}": {
+            "get": {
+                "tags": [
+                    "Bot"
+                ],
+                "operationId": "GetBotImage",
+                "parameters": [
+                    {
+                        "name": "botId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/bots/stop": {
+            "get": {
+                "tags": [
+                    "Bot"
+                ],
+                "operationId": "IsStopAllBots",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cache": {
+            "delete": {
+                "tags": [
+                    "Cache"
+                ],
+                "operationId": "DeleteCacheAsync",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EmptyDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EmptyDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EmptyDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/chats": {
+            "post": {
+                "tags": [
+                    "Chat"
+                ],
+                "operationId": "CreateChat",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChatCreateRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChatCreateRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChatCreateRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChatCreateResponseDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChatCreateResponseDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChatCreateResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/chats/create/bybotcode": {
+            "post": {
+                "tags": [
+                    "Chat"
+                ],
+                "operationId": "CreateChatByBotCode",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChatCreateByBotCodeRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChatCreateByBotCodeRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChatCreateByBotCodeRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChatCreateResponseDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChatCreateResponseDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChatCreateResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/chats/{chatId}/completions": {
+            "post": {
+                "tags": [
+                    "Chat"
+                ],
+                "operationId": "ChatCompletion",
+                "parameters": [
+                    {
+                        "name": "chatId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChatCompletionRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChatCompletionRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChatCompletionRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChatCompletionResponseDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChatCompletionResponseDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChatCompletionResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/chats/{chatId}": {
+            "get": {
+                "tags": [
+                    "Chat"
+                ],
+                "operationId": "GetChat",
+                "parameters": [
+                    {
+                        "name": "chatId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetChatResponseDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetChatResponseDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetChatResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Chat"
+                ],
+                "operationId": "DeleteChat",
+                "parameters": [
+                    {
+                        "name": "chatId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/chats/{chatId}/feedback": {
+            "post": {
+                "tags": [
+                    "Chat"
+                ],
+                "operationId": "BotFeedback",
+                "parameters": [
+                    {
+                        "name": "chatId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BotFeedbackRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BotFeedbackRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BotFeedbackRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BotFeedbackResponseDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BotFeedbackResponseDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BotFeedbackResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/chats/OpenChatBotId": {
+            "get": {
+                "tags": [
+                    "Chat"
+                ],
+                "operationId": "GetOpenChatBotId",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOpenChatBotIdResponseDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOpenChatBotIdResponseDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOpenChatBotIdResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/chats/{chatId}/displayName": {
+            "put": {
+                "tags": [
+                    "Chat"
+                ],
+                "operationId": "UpdateChatDisplayName",
+                "parameters": [
+                    {
+                        "name": "chatId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateChatDisplayNameRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateChatDisplayNameRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateChatDisplayNameRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/chats/{chatId}/userSystemMessage": {
+            "put": {
+                "tags": [
+                    "Chat"
+                ],
+                "operationId": "UpdateChatUserSystemMessage",
+                "parameters": [
+                    {
+                        "name": "chatId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateChatUserSystemMessageRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateChatUserSystemMessageRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateChatUserSystemMessageRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Chat"
+                ],
+                "operationId": "DeleteChatUserSystemMessage",
+                "parameters": [
+                    {
+                        "name": "chatId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/chats/{chatId}/tickets": {
+            "post": {
+                "tags": [
+                    "Chat"
+                ],
+                "operationId": "CreateChatOneTimeticket",
+                "parameters": [
+                    {
+                        "name": "chatId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/chats/{chatId}/downloads/{path}": {
+            "get": {
+                "tags": [
+                    "Chat"
+                ],
+                "parameters": [
+                    {
+                        "name": "chatId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "path",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ticket",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/statistic": {
+            "put": {
+                "tags": [
+                    "Statistic"
+                ],
+                "operationId": "UpdateStatistic",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/statistic/tokenUsageStatistic": {
+            "get": {
+                "tags": [
+                    "Statistic"
+                ],
+                "operationId": "GetTokenUsageStatistic",
+                "parameters": [
+                    {
+                        "name": "BotId",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "TokenUsageTypeId",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "FromRequestDate",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "ToRequestDate",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "SearchFor",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OrderBy",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetTokenUsageStatisticResponseItemDtoPagingResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetTokenUsageStatisticResponseItemDtoPagingResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetTokenUsageStatisticResponseItemDtoPagingResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/System/status/current": {
+            "get": {
+                "tags": [
+                    "System"
+                ],
+                "operationId": "GetCurrentSystemStatus",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SystemMessageDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SystemMessageDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SystemMessageDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "System"
+                ],
+                "operationId": "SetCurrentSystemStatus",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SystemMessageDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SystemMessageDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SystemMessageDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/users/current": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "GetCurrentUser",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CurrentUserDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CurrentUserDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CurrentUserDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "UpdateCurrentUser",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/users/current/acceptTerms": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "AcceptTerms",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/users/current/chats/all/{keepfavorites}": {
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "DeleteCurrentUserChats",
+                "parameters": [
+                    {
+                        "name": "keepfavorites",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/users/current/chats/byid/{chatid}": {
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "DeleteCurrentUserChatById",
+                "parameters": [
+                    {
+                        "name": "chatid",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/users/current/chats/{chatid}/completion/{completionid}": {
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "DeleteCurrentUserChatCompletionById",
+                "parameters": [
+                    {
+                        "name": "chatid",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "completionid",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/users/current/chats/bybot/{botid}/{keepfavorites}": {
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "DeleteCurrentUserChatsByBotId",
+                "parameters": [
+                    {
+                        "name": "botid",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "keepfavorites",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/users/current/chats/bybot/{botid}/{systemmessageid}/{keepfavorites}": {
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "DeleteCurrentUserChatsByBotIdAndSystemMessageId",
+                "parameters": [
+                    {
+                        "name": "botid",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "systemmessageid",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "keepfavorites",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/users/current/chats/{botid}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "GetCurrentUserChatsByBot",
+                "parameters": [
+                    {
+                        "name": "botid",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OnlyFavorites",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "SearchFor",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OrderBy",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetChatsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetChatsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetChatsResponseItemDtoPagingResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/current/chats/{botid}/{usersystempromptid}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "GetCurrentUserChatsByBotAndSystemprompt",
+                "parameters": [
+                    {
+                        "name": "botid",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "usersystempromptid",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OnlyFavorites",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "SearchFor",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OrderBy",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetChatsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetChatsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetChatsResponseItemDtoPagingResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/current/chats": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "GetCurrentUserChats",
+                "parameters": [
+                    {
+                        "name": "OnlyFavorites",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "SearchFor",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OrderBy",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetChatsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetChatsResponseItemDtoPagingResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetChatsResponseItemDtoPagingResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/current/chats/{chatid}/isfavorite": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "UpdateChatIsFavorite",
+                "parameters": [
+                    {
+                        "name": "chatid",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChatUpdateIsFavoriteRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChatUpdateIsFavoriteRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChatUpdateIsFavoriteRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/users/current/userSystemMessage": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "GetUserSystemMessages",
+                "parameters": [
+                    {
+                        "name": "SearchFor",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "OrderBy",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserSystemMessagesResponseItemDtoPagingResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserSystemMessagesResponseItemDtoPagingResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserSystemMessagesResponseItemDtoPagingResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "CreateUserSystemMessage",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserSystemMessageRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserSystemMessageRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserSystemMessageRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/current/userSystemMessage/{userSystemMessageId}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "GetUserSystemMessage",
+                "parameters": [
+                    {
+                        "name": "userSystemMessageId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserSystemMessageResponseDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserSystemMessageResponseDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserSystemMessageResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "UpdateUserSystemMessage",
+                "parameters": [
+                    {
+                        "name": "userSystemMessageId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserSystemMessageRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserSystemMessageRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserSystemMessageRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "DeleteUserSystemMessage",
+                "parameters": [
+                    {
+                        "name": "userSystemMessageId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/users/current/userSystemMessageCount": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "GetUserSystemMessageCount",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserSystemMessageCountResponseDto"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserSystemMessageCountResponseDto"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserSystemMessageCountResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AdminCreateBotFactRequestDto": {
+                "type": "object",
+                "properties": {
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "factText": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminCreateBotFactResponseDto": {
+                "type": "object",
+                "properties": {
+                    "botFactId": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminCreateBotRequestDto": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "displayNameTv": {
+                        "$ref": "#/components/schemas/TermValueDto"
+                    },
+                    "displayMessageTv": {
+                        "$ref": "#/components/schemas/TermValueDto"
+                    },
+                    "descriptionTv": {
+                        "$ref": "#/components/schemas/TermValueDto"
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "baseSystemMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isPublic": {
+                        "type": "boolean"
+                    },
+                    "userLogins": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "adminLogins": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "contributorLogins": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "sampleQuestion1Tv": {
+                        "$ref": "#/components/schemas/TermValueDto"
+                    },
+                    "sampleQuestion2Tv": {
+                        "$ref": "#/components/schemas/TermValueDto"
+                    },
+                    "implementationType": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "openAiServiceId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "modelName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isStartBot": {
+                        "type": "boolean",
+                        "nullable": true,
+                        "deprecated": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminCreateBotResponseDto": {
+                "type": "object",
+                "properties": {
+                    "botId": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminCreateOpenAiServiceRequestDto": {
+                "type": "object",
+                "properties": {
+                    "displayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "azureOpenAiEndpoint": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "azureOpenAiApiKey": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminCreateStartBotBotRequestDto": {
+                "type": "object",
+                "properties": {
+                    "isDefaultBot": {
+                        "type": "boolean"
+                    },
+                    "keywords": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetAcsBotConfigurationResponseDto": {
+                "type": "object",
+                "properties": {
+                    "isBlobServiceClientSet": {
+                        "type": "boolean"
+                    },
+                    "blobServiceClientDisplayUri": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isSearchClientSet": {
+                        "type": "boolean"
+                    },
+                    "searchClientEndpoint": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "indexName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "indexFields": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "useSemanticSearch": {
+                        "type": "boolean"
+                    },
+                    "semanticSearchConfigurationName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "maxResults": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "maxCharsTotal": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetAzureOpenAISearchBotConfigurationResponseDto": {
+                "type": "object",
+                "properties": {
+                    "isBlobServiceClientSet": {
+                        "type": "boolean"
+                    },
+                    "blobServiceClientDisplayUri": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isSearchClientSet": {
+                        "type": "boolean"
+                    },
+                    "searchClientEndpoint": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "indexName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "semanticSearchConfigurationName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "embeddingModelName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "maxResults": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "temperature": {
+                        "type": "number",
+                        "format": "float",
+                        "nullable": true
+                    },
+                    "searchFilter": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "searchStrictness": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "searchShouldRestrictResultScope": {
+                        "type": "boolean",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetBotConfigurationResponseDto": {
+                "type": "object",
+                "properties": {
+                    "configurationRaw": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetBotFactsResponseItemDto": {
+                "type": "object",
+                "properties": {
+                    "botFactId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "factText": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "createdUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetBotFactsResponseItemDtoPagingResult": {
+                "type": "object",
+                "properties": {
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalPageCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalItemCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "hasPrevious": {
+                        "type": "boolean"
+                    },
+                    "hasNext": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AdminGetBotFactsResponseItemDto"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetBotFeedbackResponseItemDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "userMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "assistantMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "userComment": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "messageCreatedUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "voteId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "adminComment": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "adminUpdatedUtc": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetBotFeedbackResponseItemDtoPagingResult": {
+                "type": "object",
+                "properties": {
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalPageCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalItemCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "hasPrevious": {
+                        "type": "boolean"
+                    },
+                    "hasNext": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AdminGetBotFeedbackResponseItemDto"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetBotResponseDto": {
+                "type": "object",
+                "properties": {
+                    "botId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "code": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "implementationType": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "displayNameTv": {
+                        "$ref": "#/components/schemas/TermValueDto"
+                    },
+                    "displayMessageTv": {
+                        "$ref": "#/components/schemas/TermValueDto"
+                    },
+                    "descriptionTv": {
+                        "$ref": "#/components/schemas/TermValueDto"
+                    },
+                    "sampleQuestion1Tv": {
+                        "$ref": "#/components/schemas/TermValueDto"
+                    },
+                    "sampleQuestion2Tv": {
+                        "$ref": "#/components/schemas/TermValueDto"
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "isStartBot": {
+                        "type": "boolean"
+                    },
+                    "baseSystemMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isPublic": {
+                        "type": "boolean"
+                    },
+                    "userLogins": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "userGroups": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "adminLogins": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "contributorLogins": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isBotAdmin": {
+                        "type": "boolean"
+                    },
+                    "isBotContributor": {
+                        "type": "boolean"
+                    },
+                    "createdUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "openAiServiceId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "openAiService": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "modelName": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetBotsResponseItemDto": {
+                "type": "object",
+                "properties": {
+                    "botId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "code": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "implementationType": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "displayMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "isStartBot": {
+                        "type": "boolean"
+                    },
+                    "isFactBot": {
+                        "type": "boolean"
+                    },
+                    "isOpenBot": {
+                        "type": "boolean"
+                    },
+                    "isPublic": {
+                        "type": "boolean"
+                    },
+                    "isEditingSupported": {
+                        "type": "boolean"
+                    },
+                    "isBotAdmin": {
+                        "type": "boolean"
+                    },
+                    "isBotContributor": {
+                        "type": "boolean"
+                    },
+                    "createdUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "openAiServiceId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "openAiService": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "modelName": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetBotsResponseItemDtoPagingResult": {
+                "type": "object",
+                "properties": {
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalPageCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalItemCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "hasPrevious": {
+                        "type": "boolean"
+                    },
+                    "hasNext": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AdminGetBotsResponseItemDto"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetOpenAiServiceResponseDto": {
+                "type": "object",
+                "properties": {
+                    "displayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "isAzureOpenAiSet": {
+                        "type": "boolean"
+                    },
+                    "azureOpenAiEndpoint": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetOpenAiServicesResponseItemDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetOpenAiServicesResponseItemDtoPagingResult": {
+                "type": "object",
+                "properties": {
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalPageCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalItemCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "hasPrevious": {
+                        "type": "boolean"
+                    },
+                    "hasNext": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AdminGetOpenAiServicesResponseItemDto"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetStartBotBotsResponseItemDto": {
+                "type": "object",
+                "properties": {
+                    "botId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botCode": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botDisplayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botDisplayMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botDescription": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isDefaultBot": {
+                        "type": "boolean"
+                    },
+                    "isStartBot": {
+                        "type": "boolean"
+                    },
+                    "keywords": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetStartBotBotsResponseItemDtoPagingResult": {
+                "type": "object",
+                "properties": {
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalPageCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalItemCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "hasPrevious": {
+                        "type": "boolean"
+                    },
+                    "hasNext": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AdminGetStartBotBotsResponseItemDto"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetUnassignedBotsResponseItemDto": {
+                "type": "object",
+                "properties": {
+                    "botId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botDisplayName": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminGetUnassignedBotsResponseItemDtoPagingResult": {
+                "type": "object",
+                "properties": {
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalPageCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalItemCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "hasPrevious": {
+                        "type": "boolean"
+                    },
+                    "hasNext": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AdminGetUnassignedBotsResponseItemDto"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminUpdateAcsBotConfigurationRequestDto": {
+                "type": "object",
+                "properties": {
+                    "isUpdateBlobClient": {
+                        "type": "boolean"
+                    },
+                    "blobClientConnectionString": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isUpdateSearchClient": {
+                        "type": "boolean"
+                    },
+                    "searchClientEndpoint": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "searchClientCredential": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "indexName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "indexFields": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "useSemanticSearch": {
+                        "type": "boolean"
+                    },
+                    "semanticSearchConfigurationName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "maxResults": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "maxCharsTotal": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminUpdateAzureOpenAISearchBotConfigurationRequestDto": {
+                "type": "object",
+                "properties": {
+                    "isUpdateBlobClient": {
+                        "type": "boolean"
+                    },
+                    "blobClientConnectionString": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isUpdateSearchClient": {
+                        "type": "boolean"
+                    },
+                    "searchClientEndpoint": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "searchClientCredential": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "indexName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "semanticSearchConfigurationName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "embeddingModelName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "maxResults": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "temperature": {
+                        "type": "number",
+                        "format": "float",
+                        "nullable": true
+                    },
+                    "searchFilter": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "searchStrictness": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "searchShouldRestrictResultScope": {
+                        "type": "boolean",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminUpdateBotConfigurationRequestDto": {
+                "type": "object",
+                "properties": {
+                    "configurationRaw": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminUpdateBotFactRequestDto": {
+                "type": "object",
+                "properties": {
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "factText": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminUpdateBotFeedbackRequestDto": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "adminComment": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminUpdateBotRequestDto": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "displayNameTv": {
+                        "$ref": "#/components/schemas/TermValueDto"
+                    },
+                    "displayMessageTv": {
+                        "$ref": "#/components/schemas/TermValueDto"
+                    },
+                    "descriptionTv": {
+                        "$ref": "#/components/schemas/TermValueDto"
+                    },
+                    "baseSystemMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "isPublic": {
+                        "type": "boolean"
+                    },
+                    "userLogins": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "adminLogins": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "contributorLogins": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "sampleQuestion1Tv": {
+                        "$ref": "#/components/schemas/TermValueDto"
+                    },
+                    "sampleQuestion2Tv": {
+                        "$ref": "#/components/schemas/TermValueDto"
+                    },
+                    "openAiServiceId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "modelName": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminUpdateOpenAiServiceRequestDto": {
+                "type": "object",
+                "properties": {
+                    "displayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "isUpdateOpenAi": {
+                        "type": "boolean"
+                    },
+                    "azureOpenAiEndpoint": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "azureOpenAiApiKey": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdminUpdateStartBotBotRequestDto": {
+                "type": "object",
+                "properties": {
+                    "isDefaultBot": {
+                        "type": "boolean"
+                    },
+                    "keywords": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "BotFeedbackRequestDto": {
+                "type": "object",
+                "properties": {
+                    "chatId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "userMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "assistantMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "messageCreatedUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "userComment": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "voteId": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "BotFeedbackResponseDto": {
+                "type": "object",
+                "properties": {
+                    "feedbackId": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ChatCompletionMetaData": {
+                "type": "object",
+                "properties": {
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "nullable": true
+                    },
+                    "sources": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InformationSource"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ChatCompletionRequestDto": {
+                "type": "object",
+                "properties": {
+                    "userMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "ignoreChatHistory": {
+                        "type": "boolean"
+                    },
+                    "isAdminChat": {
+                        "type": "boolean"
+                    },
+                    "isTraceLogEnabled": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ChatCompletionResponseDto": {
+                "type": "object",
+                "properties": {
+                    "completionId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "chatId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "userMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "assistantMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "promptTokens": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "completionTokens": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalTokens": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "botId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botDisplayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botDisplayMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botDescription": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "chatDisplayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "metaData": {
+                        "$ref": "#/components/schemas/ChatCompletionMetaData"
+                    },
+                    "traceLog": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ChatCreateByBotCodeRequestDto": {
+                "type": "object",
+                "properties": {
+                    "botCode": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ChatCreateRequestDto": {
+                "type": "object",
+                "properties": {
+                    "botId": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ChatCreateResponseDto": {
+                "type": "object",
+                "properties": {
+                    "chatId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botDisplayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botDisplayMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botDescription": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botSampleQuestion1": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botSampleQuestion2": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isUserSystemMessageSupported": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ChatUpdateIsFavoriteRequestDto": {
+                "type": "object",
+                "properties": {
+                    "isFavorite": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CurrentUserDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "login": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "nullable": true
+                    },
+                    "isTermsAccepted": {
+                        "type": "boolean"
+                    },
+                    "isKeepChatHistory": {
+                        "type": "boolean"
+                    },
+                    "keepChatHistoryForDays": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "isKeepFavoritesForever": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "EmptyDto": {
+                "type": "object",
+                "additionalProperties": false
+            },
+            "GetBotsResponseItemDto": {
+                "type": "object",
+                "properties": {
+                    "botId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "code": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "displayMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "sampleQuestion1": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "sampleQuestion2": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "modelName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isStartBot": {
+                        "type": "boolean"
+                    },
+                    "createdUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GetBotsResponseItemDtoPagingResult": {
+                "type": "object",
+                "properties": {
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalPageCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalItemCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "hasPrevious": {
+                        "type": "boolean"
+                    },
+                    "hasNext": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/GetBotsResponseItemDto"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GetChatResponseCompletionDto": {
+                "type": "object",
+                "properties": {
+                    "completionId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "userMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "assistantMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "createdUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "metaData": {
+                        "$ref": "#/components/schemas/ChatCompletionMetaData"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GetChatResponseDto": {
+                "type": "object",
+                "properties": {
+                    "chatId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "createdUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastAccessedUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "botId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botDisplayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botDisplayMessage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botDescription": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botSampleQuestion1": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botSampleQuestion2": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "completions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/GetChatResponseCompletionDto"
+                        },
+                        "nullable": true
+                    },
+                    "isFavorite": {
+                        "type": "boolean"
+                    },
+                    "isUserSystemMessageSupported": {
+                        "type": "boolean"
+                    },
+                    "userSystemMessageId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "userSystemMessageDisplayName": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GetChatsResponseItemDto": {
+                "type": "object",
+                "properties": {
+                    "chatId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "lastAccessedUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "botId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botDisplayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "userSystemMessageId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "userSystemMessageDisplayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isFavorite": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GetChatsResponseItemDtoPagingResult": {
+                "type": "object",
+                "properties": {
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalPageCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalItemCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "hasPrevious": {
+                        "type": "boolean"
+                    },
+                    "hasNext": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/GetChatsResponseItemDto"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GetOpenChatBotIdResponseDto": {
+                "type": "object",
+                "properties": {
+                    "openChatBotId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isPublic": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GetTokenUsageStatisticResponseItemDto": {
+                "type": "object",
+                "properties": {
+                    "requestDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "botId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "botDisplayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "tokenUsageTypeId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "userCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "requestCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "promptTokens": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "completionTokens": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalTokens": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GetTokenUsageStatisticResponseItemDtoPagingResult": {
+                "type": "object",
+                "properties": {
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalPageCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalItemCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "hasPrevious": {
+                        "type": "boolean"
+                    },
+                    "hasNext": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/GetTokenUsageStatisticResponseItemDto"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GetUserSystemMessageCountResponseDto": {
+                "type": "object",
+                "properties": {
+                    "systemMessageCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GetUserSystemMessageResponseDto": {
+                "type": "object",
+                "properties": {
+                    "userSystemMessageId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "systemMessage": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GetUserSystemMessagesResponseItemDto": {
+                "type": "object",
+                "properties": {
+                    "userSystemMessageId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GetUserSystemMessagesResponseItemDtoPagingResult": {
+                "type": "object",
+                "properties": {
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalPageCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalItemCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "hasPrevious": {
+                        "type": "boolean"
+                    },
+                    "hasNext": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/GetUserSystemMessagesResponseItemDto"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "InformationSource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "fileName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "url": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "language": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "createTicketUrl": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "SearchBotByStartBotRequestDto": {
+                "type": "object",
+                "properties": {
+                    "userMessage": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "SystemMessageDto": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "TermValueDto": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "valueDe": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateChatDisplayNameRequestDto": {
+                "type": "object",
+                "properties": {
+                    "displayName": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateChatUserSystemMessageRequestDto": {
+                "type": "object",
+                "properties": {
+                    "userSystemMessageId": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateUserRequestDto": {
+                "type": "object",
+                "properties": {
+                    "isKeepChatHistory": {
+                        "type": "boolean"
+                    },
+                    "keepChatHistoryForDays": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "isKeepFavoritesForever": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateUserSystemMessageRequestDto": {
+                "type": "object",
+                "properties": {
+                    "displayName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "systemMessage": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+    }
+}
